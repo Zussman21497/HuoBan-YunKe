@@ -18,6 +18,8 @@ public class HuoBanSerivce {
     private static final String API_KEY = "EbZB8162L2WGodKxXgYJcPRAImTS1ylCSCVNE8bl";
     private static final String URL = "https://api.huoban.com/openapi/v1";
 
+    //第一次测试
+
 
     public static void main(String[] args) {
         list();
