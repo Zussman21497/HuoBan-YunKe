@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod=" 5 seconds">
+    <!--    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>-->
+    <property name="project.name" value="property"/>
+    <property name="log.root.path" value="../"/>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>
+                %d{yyyy-MM-dd HH:mm:ss}|%highlight(%-5level)|%thread|%cyan(%logger{36}):%magenta(%L)|%msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <appender name="TASK-ROOT" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>${log.root.path}/logs/${project.name}.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.root.path}/logs/%d{yyyy-MM-dd}/${project.name}-%d{yyyy-MM-dd}-%i.log.gz
+            </fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>50MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>5</maxHistory>
+            <totalSizeCap>10GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss}|%-5level|%thread|%logger{36}:%line|%msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--	<logger name="com.xcc.mapper" level="DEBUG" />-->
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="TASK-ROOT"/>
+    </root>
+</configuration>

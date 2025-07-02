@@ -1,0 +1,28 @@
+server:
+  port: 9091
+  address: 0.0.0.0
+spring:
+#  datasource:
+#    username: huoban
+#    password: ShsM4ZiEtFLtdzx3
+#    url: jdbc:mysql://47.109.72.79:3306/huoban?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    type: com.zaxxer.hikari.HikariDataSource
+#    hikari:
+#      auto-commit: true
+#      minimum-idle: 5
+#      maximum-pool-size: 100
+#      max-lifetime: 0
+#      idle-timeout: 20000
+#      connection-timeout: 30000
+#      connection-test-query: SELECT 1
+#  redis:
+#    database: 7
+#    host: 127.0.0.1
+#    port: 6379
+#    password:
+#    timeout: 10s
+  web:
+    resources:
+      static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:${upload}
+upload: /home/www/upload

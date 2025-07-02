@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assembly>
+    <!-- 可自定义，这里指定的是项目环境 -->
+    <!-- xxx.tar  -->
+    <id>shijia</id>
+    <!-- 打包的类型，如果有N个，将会打N个类型的包 -->
+    <!--zip，tar，tar.gz，tgz，tar.bz2，tar.snappy，tar.xz，txz，jar，dir，war-->
+    <formats>
+        <format>dir</format>
+        <format>zip</format>
+    </formats>
+    <includeBaseDirectory>true</includeBaseDirectory>
+    <fileSets>
+        <!-- 配置文件打包-打包至conf目录下 -->
+        <!--        <fileSet>-->
+        <!--            <directory>src/main/resources/${profiles.active}</directory>-->
+        <!--            <outputDirectory>conf</outputDirectory>-->
+        <!--            <fileMode>0644</fileMode>-->
+        <!--            <includes>-->
+        <!--                <include>**/*</include>-->
+        <!--            </includes>-->
+        <!--        </fileSet>-->
+        <fileSet>
+            <directory>src/main/resources</directory>
+            <outputDirectory>conf</outputDirectory>
+            <fileMode>0644</fileMode>
+            <includes>
+                <include>**/*</include>
+            </includes>
+            <excludes>
+                <exclude>assembly.xml</exclude>
+            </excludes>
+        </fileSet>
+        <!-- 日志文件目录 -->
+        <fileSet>
+            <outputDirectory>logs</outputDirectory>
+            <fileMode>0777</fileMode>
+            <excludes>
+                <exclude>**/*</exclude>
+            </excludes>
+        </fileSet>
+        <!-- 启动文件目录 -->
+        <fileSet>
+            <directory>${basedir}/src/main/bin</directory>
+            <outputDirectory>bin</outputDirectory>
+            <fileMode>0755</fileMode>
+            <includes>
+                <include>**/*</include>
+            </includes>
+        </fileSet>
+    </fileSets>
+    <dependencySets>
+        <dependencySet>
+            <!-- 依赖库 -->
+            <outputDirectory>lib</outputDirectory>
+            <scope>runtime</scope>
+            <fileMode>0755</fileMode>
+<!--            <excludes>-->
+<!--                <exclude>${project.groupId}:${project.artifactId}</exclude>-->
+<!--            </excludes>-->
+        </dependencySet>
+<!--        <dependencySet>-->
+<!--            <outputDirectory>lib</outputDirectory>-->
+<!--            <fileMode>0755</fileMode>-->
+<!--            <includes>-->
+<!--                <include>${project.groupId}:${project.artifactId}</include>-->
+<!--            </includes>-->
+<!--        </dependencySet>-->
+        <dependencySet>
+            <outputDirectory>/lib</outputDirectory>
+            <scope>system</scope>
+            <fileMode>0755</fileMode>
+<!--            <includes>-->
+<!--                <include>${project.groupId}:${project.artifactId}</include>-->
+<!--            </includes>-->
+        </dependencySet>
+    </dependencySets>
+</assembly>
