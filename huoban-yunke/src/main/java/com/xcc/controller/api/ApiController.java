@@ -6,6 +6,7 @@ import cn.hutool.json.JSONUtil;
 import com.xcc.apiService.huoban.HuoBanSerivce;
 import com.xcc.apiService.yunke.YunKeService;
 import com.xcc.commons.AjaxJson;
+import com.xcc.dto.CustomerDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -29,23 +30,29 @@ public class ApiController {
     @Autowired
     private HuoBanSerivce huoBanSerivce;
 
+    @GetMapping("/hello")
+    public String hello() {
+        return "hello world";
+    }
+
+    //增加客户信息
     @PostMapping("/push")
-    public AjaxJson poll(@RequestBody JSONObject obj) {
-        log.info("伙伴云订阅接口入参: {}", obj);
-        yunKeService.addCustomer(obj);
+    public AjaxJson poll(@RequestBody CustomerDTO dto) {
+        log.info("伙伴云客户信息新增接口入参: {}", dto);
+        yunKeService.addCustomer(dto);
         return AjaxJson.getSuccess();
     }
 
     @PostMapping("/data/update")
-    public AjaxJson dataUpdate(@RequestBody JSONObject obj) {
-        log.info("伙伴云客户信息更新接口入参: {}", obj);
-        yunKeService.dataUpdate(obj);
+    public AjaxJson dataUpdate(@RequestBody CustomerDTO dto) {
+        log.info("伙伴云客户信息更新接口入参: {}", dto);
+        yunKeService.updateCustomer(dto);
         return AjaxJson.getSuccess();
     }
 
     @PostMapping("/user/update")
     public AjaxJson update(@RequestBody JSONObject obj) {
-        log.info("伙伴云用户信息更新接口入参: {}", obj);
+        log.info("伙伴云用户信息新增/更新接口入参: {}", obj);
         yunKeService.addOrUpdate(obj);
         return AjaxJson.getSuccess();
     }
@@ -75,7 +82,7 @@ public class ApiController {
                     }
                 });
 
-                huoBanSerivce.UpdateHuoBan(rquest);
+                huoBanSerivce.updateHuoBan(rquest);
             }
 
         });
